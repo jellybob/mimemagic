@@ -78,6 +78,7 @@ class TestMimeMagic < Minitest::Test
   end
 
   def test_recognize_by_magic
+    load "mimemagic/overlay.rb"
     Dir['test/files/*'].each do |file|
       mime = file[11..-1].sub('.', '/').sub(/\{\w+\}/, '')
       assert_equal mime, MimeMagic.by_magic(File.read(file)).to_s
@@ -86,6 +87,7 @@ class TestMimeMagic < Minitest::Test
   end
 
   def test_recognize_all_by_magic
+    load 'mimemagic/overlay.rb'
     %w(msoffice rubyxl gdocs).each do |variant|
       file = "test/files/application.vnd.openxmlformats-officedocument.spreadsheetml{#{variant}}.sheet"
       mimes = %w[application/vnd.openxmlformats-officedocument.spreadsheetml.sheet application/zip]
