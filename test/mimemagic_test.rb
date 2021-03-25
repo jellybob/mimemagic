@@ -52,17 +52,17 @@ class TestMimeMagic < Minitest::Test
   end
 
   def test_recognize_extensions
-    assert_equal 'text/html', MimeMagic.by_extension('.html').to_s
-    assert_equal 'text/html', MimeMagic.by_extension('html').to_s
-    assert_equal 'text/html', MimeMagic.by_extension(:html).to_s
+    assert_equal 'application/xhtml+xml', MimeMagic.by_extension('.html').to_s
+    assert_equal 'application/xhtml+xml', MimeMagic.by_extension('html').to_s
+    assert_equal 'application/xhtml+xml', MimeMagic.by_extension(:html).to_s
     assert_equal 'application/x-ruby', MimeMagic.by_extension('rb').to_s
     assert_nil MimeMagic.by_extension('crazy')
     assert_nil MimeMagic.by_extension('')
   end
 
   def test_recognize_by_a_path
-    assert_equal 'text/html', MimeMagic.by_path('/adsjkfa/kajsdfkadsf/kajsdfjasdf.html').to_s
-    assert_equal 'text/html', MimeMagic.by_path('something.html').to_s
+    assert_equal 'application/xhtml+xml', MimeMagic.by_path('/adsjkfa/kajsdfkadsf/kajsdfjasdf.html').to_s
+    assert_equal 'application/xhtml+xml', MimeMagic.by_path('something.html').to_s
     assert_equal 'application/x-ruby', MimeMagic.by_path('wtf.rb').to_s
     assert_nil MimeMagic.by_path('where/am.html/crazy')
     assert_nil MimeMagic.by_path('')
