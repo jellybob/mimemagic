@@ -15,14 +15,14 @@ Gem::Specification.new do |s|
   s.extensions = %w(ext/mimemagic/Rakefile)
 
   s.summary = 'Fast mime detection by extension or content'
-  s.description = 'Fast mime detection by extension or content in pure ruby (Uses freedesktop.org.xml shared-mime-info database)'
+  s.description = 'Fast mime detection by extension or content (Uses freedesktop.org.xml shared-mime-info database)'
   s.homepage = 'https://github.com/mimemagicrb/mimemagic'
   s.license = 'MIT'
 
-  s.add_dependency('nokogiri', '~> 1.11.2')
+  s.add_dependency('nokogiri', '~> 1')
+  s.add_dependency('rake')
 
   s.add_development_dependency('minitest', '~> 5.14')
-  s.add_development_dependency('rake', '~> 13.0')
 
   if s.respond_to?(:metadata)
     s.metadata['changelog_uri'] = "https://github.com/mimemagicrb/mimemagic/blob/master/CHANGELOG.md"

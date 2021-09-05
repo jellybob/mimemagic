@@ -4,6 +4,10 @@
 
 ### Breaking Changes
 
+## 0.4.1
+
+Remove `mimemagic/overlay` as it contains outdated, little used, data.
+
 ## 0.3.7 (2021-03-25)
 
 You will now need to ensure you have a copy of the fd.o shared MIME
@@ -17,6 +21,63 @@ None
 ### Fixed
 
 None
+## 0.4.3
+
+* Improve the development/test experience (@coldnebo, @kachick)
+
+* Ensure the gem works in environments with gem caching (@haines)
+
+* Add support for MacPorts installed dependencies (@brlanier)
+
+* Allow using a dummy XML file in cases where the gem is just a transient
+  dependency. (@Scharrels)
+
+
+## 0.4.2
+
+* Resolve issues parsing the version of freedesktop.org.xml shipped with
+  Ubuntu Trusty.
+
+* Make Rake a runtime dependency.
+
+* Fix the test suite.
+
+* Relax the dependency on Nokogiri to something less specific in order
+to avoid conflicting with other dependencies in people's applications.
+
+## 0.4.1
+
+
+## 0.4.0
+
+Yanked release.
+
+## 0.3.10
+
+* Improve the development/test experience (@coldnebo, @kachick)
+
+* Ensure the gem works in environments with gem caching (@haines)
+
+* Add support for MacPorts installed dependencies (@brlanier)
+
+* Allow using a dummy XML file in cases where the gem is just a transient
+  dependency. (@Scharrels)
+
+## 0.3.9 (2021-03-25)
+
+* Resolve issues parsing the version of freedesktop.org.xml shipped with
+  Ubuntu Trusty.
+
+* Reintroduce overlays, since it seems at least some people were using
+  them.
+  
+* Make Rake a runtime dependency.
+
+* Fix the test suite.
+## 0.3.8 (2021-03-25)
+
+Relax the dependency on Nokogiri to something less specific in order
+to avoid conflicting with other dependencies in people's applications.
 
 ## 0.3.7 (2021-03-25)
 

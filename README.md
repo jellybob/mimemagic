@@ -3,10 +3,6 @@ provided by freedesktop.org (see http://freedesktop.org/wiki/Software/shared-mim
 
 [![Gem Version](https://img.shields.io/gem/v/mimemagic.svg)](http://rubygems.org/gems/mimemagic)
 
-*Warning:* If you are using a version of MimeMagic < 0.3.7, or version 0.4.0, you may well be in breach of the
-GPL due to a GPL licensed dependency that was bundled with this gem. You should update to a version >= 0.3.7 
-as soon as possible. See https://github.com/minad/mimemagic/issues/97 for details.
-
 Dependencies
 ============
 
@@ -40,7 +36,18 @@ MimeMagic.by_magic(File.open('test.html'))
 # etc...
 ```
 
-You can add your own magic with `MimeMagic.add`.
+Extra magic overlay
+=====
+
+Microsoft Office 2007+ formats (xlsx, docx, and pptx) are not supported by the mime database at freedesktop.org. These files are all zipped collections of xml files and will be detected as "application/zip". Mimemagic comes with extra magic you can overlay on top of the defaults to correctly detect these file types. Enable it like this:
+
+```ruby
+require 'mimemagic'
+require 'mimemagic/overlay'
+MimeMagic.by_magic(File.open('test.xlsx'))
+```
+
+You can add your own magic with `MimeMagic.add`. See `lib/mimemagic/overlay.rb`.
 
 API
 ===
@@ -50,20 +57,20 @@ http://www.rubydoc.info/github/mimemagicrb/mimemagic
 Tests
 =====
 
-```
-bundle install
+```console
+$ bundle install
 
-rake test
+$ bundle exec rake test
 ```
 
 Authors
 =======
 
-Daniel Mendler
-Jon Wood
-[MimeMagic Contributors](https://github.com/mimemagicrb/mimemagic/graphs/contributors)
+* Daniel Mendler
+* Jon Wood
+* [MimeMagic Contributors](https://github.com/mimemagicrb/mimemagic/graphs/contributors)
 
 LICENSE
 =======
 
-MIT
+{file:LICENSE MIT}

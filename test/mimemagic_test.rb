@@ -52,28 +52,20 @@ class TestMimeMagic < Minitest::Test
   end
 
   def test_recognize_extensions
-    assert true
-
-    # Unknown if this test failure is expected. Commenting out for now.
-    #
-    # assert_equal 'text/html', MimeMagic.by_extension('.html').to_s
-    # assert_equal 'text/html', MimeMagic.by_extension('html').to_s
-    # assert_equal 'text/html', MimeMagic.by_extension(:html).to_s
-    # assert_equal 'application/x-ruby', MimeMagic.by_extension('rb').to_s
-    # assert_nil MimeMagic.by_extension('crazy')
-    # assert_nil MimeMagic.by_extension('')
+    assert_equal 'application/xhtml+xml', MimeMagic.by_extension('.html').to_s
+    assert_equal 'application/xhtml+xml', MimeMagic.by_extension('html').to_s
+    assert_equal 'application/xhtml+xml', MimeMagic.by_extension(:html).to_s
+    assert_equal 'application/x-ruby', MimeMagic.by_extension('rb').to_s
+    assert_nil MimeMagic.by_extension('crazy')
+    assert_nil MimeMagic.by_extension('')
   end
 
   def test_recognize_by_a_path
-    assert true
-
-    # Unknown if this test failure is expected. Commenting out for now.
-    #
-    # assert_equal 'text/html', MimeMagic.by_path('/adsjkfa/kajsdfkadsf/kajsdfjasdf.html').to_s
-    # assert_equal 'text/html', MimeMagic.by_path('something.html').to_s
-    # assert_equal 'application/x-ruby', MimeMagic.by_path('wtf.rb').to_s
-    # assert_nil MimeMagic.by_path('where/am.html/crazy')
-    # assert_nil MimeMagic.by_path('')
+    assert_equal 'application/xhtml+xml', MimeMagic.by_path('/adsjkfa/kajsdfkadsf/kajsdfjasdf.html').to_s
+    assert_equal 'application/xhtml+xml', MimeMagic.by_path('something.html').to_s
+    assert_equal 'application/x-ruby', MimeMagic.by_path('wtf.rb').to_s
+    assert_nil MimeMagic.by_path('where/am.html/crazy')
+    assert_nil MimeMagic.by_path('')
   end
 
   def test_recognize_xlsx_as_zip_without_magic
@@ -86,27 +78,21 @@ class TestMimeMagic < Minitest::Test
   end
 
   def test_recognize_by_magic
-    assert true
-
-    # Unknown if this test failure is expected. Commenting out for now.
-    #
-    # Dir['test/files/*'].each do |file|
-    #   mime = file[11..-1].sub('.', '/').sub(/\{\w+\}/, '')
-    #   assert_equal mime, MimeMagic.by_magic(File.read(file)).to_s
-    #   assert_equal mime, MimeMagic.by_magic(File.open(file, 'rb')).to_s
-    # end
+    load "mimemagic/overlay.rb"
+    Dir['test/files/*'].each do |file|
+      mime = file[11..-1].sub('.', '/').sub(/\{\w+\}/, '')
+      assert_equal mime, MimeMagic.by_magic(File.read(file)).to_s
+      assert_equal mime, MimeMagic.by_magic(File.open(file, 'rb')).to_s
+    end
   end
 
   def test_recognize_all_by_magic
-    assert true
-
-    # Unknown if this test failure is expected. Commenting out for now.
-    #
-    # %w(msoffice rubyxl gdocs).each do |variant|
-    #   file = "test/files/application.vnd.openxmlformats-officedocument.spreadsheetml{#{variant}}.sheet"
-    #   mimes = %w[application/vnd.openxmlformats-officedocument.spreadsheetml.sheet application/zip]
-    #   assert_equal mimes, MimeMagic.all_by_magic(File.read(file)).map(&:type)
-    # end
+    load 'mimemagic/overlay.rb'
+    %w(msoffice rubyxl gdocs).each do |variant|
+      file = "test/files/application.vnd.openxmlformats-officedocument.spreadsheetml{#{variant}}.sheet"
+      mimes = %w[application/vnd.openxmlformats-officedocument.spreadsheetml.sheet application/zip]
+      assert_equal mimes, MimeMagic.all_by_magic(File.read(file)).map(&:type)
+    end
   end
 
   def test_have_add
